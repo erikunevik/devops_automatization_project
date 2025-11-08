@@ -10,7 +10,7 @@ städer = {
 
 def get_weather_data(city):
 
-    url = f"https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/{städer[city]["longitude"]}/lat/{städer[city]["latitude"]}/data.json"
+    url = f"https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/{städer[city]['longitude']}/lat/{städer[city]['latitude']}/data.json"
 
     headers = {
         "Accept": "application/json"
