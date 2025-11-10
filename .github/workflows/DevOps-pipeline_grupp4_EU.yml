@@ -31,9 +31,15 @@ jobs:
          -  name: Runs the test
             run: pytest -q
 
-         -  name: Pytest ok
-            if: ${{ success() }}
-            run: echo "Pytest OK ✅"
+         - name: Pytest with if-else
+           run: |
+            if pytest -q; then
+                echo "Pytest OK ✅"
+            else
+                echo "Pytest failed ❌"
+                exit 1
+            fi
+            
 
 
 
