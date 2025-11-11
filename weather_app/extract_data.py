@@ -21,6 +21,7 @@ def get_weather_data(city):
     data = r.json()
     return data 
     
+    
 def create_dict(stad):
     data = get_weather_data(stad)
     degree_data = []
@@ -40,7 +41,3 @@ def create_dict(stad):
 
     return pd.DataFrame(dict_test)
 
-print(create_dict(stad= "göteborg"))
-
-
-    
