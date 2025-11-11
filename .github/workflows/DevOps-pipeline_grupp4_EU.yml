@@ -1,44 +1,47 @@
 name: eriks weather pipeline
 
 on:
-    push:
-
-        branches:
-            - DevOps-pipeline_grupp4_EU
-
-    workflow_dispatch:
+  push:
+    branches:
+      - DevOps-pipeline_grupp4_EU
+  workflow_dispatch:
 
 jobs:
-    testing-koordinates:
-        runs-on: ubuntu-latest
+  testing:
+    runs-on: ubuntu-latest
 
-        steps:
+    steps:
+      - name: Gets the whole repo
+        uses: actions/checkout@v4
 
-         -  name: Gets the whole repo
-            uses: actions/checkout@v4
+      - name: Installs latest version of python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-         -  name: Installs latest version of python
-            uses: actions/setup-python@v5
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-            with: 
-                python-version: "3.11"
+      - name: 🧪 Run unit tests
+        run: |
+          if pytest -q weather_app/pytests/test_city_coordinates.py; then
+            echo "✅ Enhetstester OK!"
+          else
+            echo "❌ Enhetstester MISSLYCKADES!"
+            exit 1
+          fi
 
-         - name: Install dependencies
-           run: |
-            python -m pip install --upgrade pip
-            pip install -r requirements.txt
-
-         -  name: Runs the test
-            run: pytest
-
-         - name: Pytest with if-else
-           run: |
-            if pytest -q; then
-                echo "Pytest OK ✅"
-            else
-                echo "Pytest failed ❌"
-                exit 1
-            fi
+      - name: 🌐 Run integration tests
+        run: |
+          if pytest -q weather_app/pytests/test_api_call.py; then
+            echo "✅ Integrationstest OK!"
+          else
+            echo "❌ Integrationstest MISSLYCKADES!"
+            exit 1
+          fi
+           
             
 
 
