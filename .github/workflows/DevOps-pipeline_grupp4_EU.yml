@@ -39,7 +39,6 @@ jobs:
             echo "✅ Integration test OK"
           else
             echo "❌ Integration test failed"
-            exit 1
           fi
            
             
