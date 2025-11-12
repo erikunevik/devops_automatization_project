@@ -26,7 +26,7 @@ jobs:
 
       - name:  Run unit tests
         run: |
-          if pytest -q weather_app/pytests/test_city_coordinates.py; then
+          if pytest -q pytests/test_city_coordinates.py; then
             echo "✅ Pytest OK"
           else
             echo "❌ Pytest failed"
@@ -35,7 +35,7 @@ jobs:
 
       - name:  Run integration tests
         run: |
-          if pytest -q weather_app/pytests/test_api_call.py; then
+          if pytest -q pytests/test_api_call.py; then
             echo "✅ Integration test OK"
           else
             echo "❌ Integration test failed"
@@ -62,8 +62,8 @@ jobs:
         - name: Build and push to Docker Hub
           uses: docker/build-push-action@v6
           with:
-            context: ./weather_app
-            file: ./weather_app/dockerfile
+            context: .
+            file: .dockerfile
             push: true
             tags: |
               studenteriksti/devops-pipeline_grupp4_eu:latest
