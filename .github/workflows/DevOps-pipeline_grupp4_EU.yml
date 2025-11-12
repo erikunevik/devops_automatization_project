@@ -63,7 +63,7 @@ jobs:
           uses: docker/build-push-action@v6
           with:
             context: .
-            file: .dockerfile
+            file: dockerfile
             push: true
             tags: |
               studenteriksti/devops-pipeline_grupp4_eu:latest
