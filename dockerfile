@@ -2,7 +2,7 @@ FROM python:3.11-slim
 
 WORKDIR /app/
 
-COPY requirements.txt . app/
+COPY requirements.txt app/
 COPY weather_app/ /app
 
 
