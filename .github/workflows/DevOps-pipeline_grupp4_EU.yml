@@ -5,15 +5,19 @@ on:
     branches:
       - DevOps-pipeline_grupp4_EU
   workflow_dispatch:
+    inputs:
+      logg-error-generator:
+        description: "Do you want to generate a logg-error artefact (true/false)"
+        default: "false"
 
 jobs:
-  testing:
-    runs-on: ubuntu-latest
+ testing:
+  runs-on: ubuntu-latest
 
-    steps:
+  steps:
       - name: Gets the whole repo
         uses: actions/checkout@v4
-
+        
       - name: Installs latest version of python
         uses: actions/setup-python@v5
         with:
@@ -23,6 +27,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: upload-error-artifact
+        if: failure() && github.event.inputs.logg-error-generator == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: failed-test-log
+          path: test-errors.txt
 
       - name:  Run unit tests
         run: |
@@ -42,7 +53,8 @@ jobs:
             exit 1
           fi
 
-  building-docker-image:
+ building-docker-image:
+  
       needs: testing
       runs-on: ubuntu-latest
       
