@@ -1,6 +1,8 @@
 name: eriks weather pipeline2
 
 on:
+
+  push:
   
   
   workflow_dispatch:
