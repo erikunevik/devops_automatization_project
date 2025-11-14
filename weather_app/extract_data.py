@@ -5,7 +5,7 @@ import pandas as pd
 städer = {
     "stockholm": {"latitude": "59.30", "longitude": "18.02"},
     "göteborg": {"latitude": "57.70", "longitude": "11.97"},
-    "malmö": {"latitude": "59.33", "longitude": "11.07"}
+    "malmö": {"latitude": "59.33", "longitude": "11.00"}
 }
 
 def get_weather_data(city):

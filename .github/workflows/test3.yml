@@ -1,8 +1,9 @@
 name: test3 #prov
 
 on:
-  
-  
+
+  push:
+
   workflow_dispatch:
     inputs:
       logg-error-generator:
@@ -53,8 +54,6 @@ jobs:
         with:
             name: failed-test-log
             path: logs.txt
-
-
 
   building-docker-image:
     needs: testing

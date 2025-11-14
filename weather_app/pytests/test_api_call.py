@@ -20,7 +20,7 @@ def test_api_response(city):
     
     r = requests.get(url= url, headers= headers)
 
-    assert r.status_code == 400
+    assert r.status_code == 200
     
     
 
